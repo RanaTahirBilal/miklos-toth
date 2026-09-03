@@ -1,0 +1,350 @@
+/* ==========================================================================
+   Miklos Toth, MD — overrides on the MegaOne "minimal" template.
+
+   Deliberately not the Grimes palette. He got brass on ink, which reads as
+   metal and machinery. This is a clinician: paper, a clinical teal, and
+   Newsreader — a journal text face rather than a display Caslon — so the
+   two sites do not read as the same site with the names swapped.
+   ========================================================================== */
+:root{
+  --mt-paper:#FBFAF8;
+  --mt-paper-2:#F3F1ED;
+  --mt-ink:#121417;
+  --mt-deep:#14181D;
+  --mt-teal:#1F5F5B;        /* 7.07:1 on paper */
+  --mt-teal-lt:#7FC2BC;     /* 8.78:1 on the dark bands */
+  --mt-muted:#555D66;       /* 6.40:1 on paper */
+  --mt-rule:rgba(18,20,23,.13);
+  --mt-rule-lt:rgba(255,255,255,.16);
+  --mt-ease:cubic-bezier(.22,.61,.36,1);
+  --mt-serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --mt-sans:'Manrope',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--mt-paper); color:var(--mt-ink);
+  font-family:var(--mt-sans); font-size:17px; line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; height:auto; }
+a{ color:inherit; }
+.mt-wrap{ width:min(1180px, calc(100% - 2*clamp(20px,5vw,64px))); margin:0 auto; }
+
+h1,h2,h3{ font-family:var(--mt-serif); font-weight:400; letter-spacing:-.02em; margin:0; }
+.mt-eyebrow{
+  font-family:var(--mt-sans); font-size:11px; font-weight:600; letter-spacing:.26em;
+  text-transform:uppercase; color:var(--mt-teal); margin:0 0 20px;
+  display:flex; align-items:center; gap:14px;
+}
+.mt-eyebrow::after{ content:""; height:1px; flex:1; max-width:160px; background:var(--mt-rule); }
+
+/* ---------- nav ---------- */
+.mt-nav{ position:sticky; top:0; z-index:50; background:var(--mt-paper);
+  border-bottom:1px solid var(--mt-rule); }
+.mt-nav .mt-wrap{ display:flex; align-items:center; justify-content:space-between;
+  gap:24px; padding:16px 0; }
+.mt-mark{ text-decoration:none; line-height:1.15; }
+.mt-mark b{ display:block; font-family:var(--mt-serif); font-size:19px; font-weight:400; }
+.mt-mark small{ display:block; font-size:9.5px; font-weight:600; letter-spacing:.24em;
+  text-transform:uppercase; color:var(--mt-teal); }
+.mt-links{ display:flex; gap:clamp(14px,2.4vw,34px); list-style:none; margin:0; padding:0; }
+.mt-links a{ text-decoration:none; font-size:12px; font-weight:600; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--mt-muted); transition:color .3s ease; }
+.mt-links a:hover,.mt-links a:focus-visible{ color:var(--mt-teal); }
+
+/* ---------- hero ---------- */
+.mt-hero{ padding:clamp(74px,11vw,150px) 0 clamp(58px,8vw,104px);
+  border-bottom:1px solid var(--mt-rule); }
+.mt-hero h1{ font-size:clamp(46px,8vw,104px); line-height:.98; margin:0 0 22px; }
+.mt-hero h1 span{ display:block; font-family:var(--mt-sans); font-size:12px; font-weight:600;
+  letter-spacing:.3em; text-transform:uppercase; color:var(--mt-teal); margin-top:22px; }
+.mt-lead{ font-family:var(--mt-serif); font-size:clamp(20px,2.3vw,29px); line-height:1.45;
+  margin:0 0 20px; max-width:30ch; }
+.mt-sub{ color:var(--mt-muted); max-width:60ch; margin:0 0 clamp(34px,4.4vw,58px); }
+.mt-facts{ display:flex; flex-wrap:wrap; gap:clamp(24px,5vw,84px);
+  padding-top:clamp(24px,3vw,38px); border-top:1px solid var(--mt-rule); }
+.mt-facts b{ display:block; font-family:var(--mt-serif); font-size:clamp(30px,3.4vw,46px); line-height:1; }
+.mt-facts span{ display:block; font-size:11.5px; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--mt-muted); margin-top:9px; }
+
+/* ---------- bands ---------- */
+.mt-band{ padding:clamp(64px,9vw,128px) 0; border-bottom:1px solid var(--mt-rule); }
+.mt-band h2{ font-size:clamp(28px,4vw,54px); line-height:1.06; margin:0 0 clamp(30px,4vw,54px);
+  max-width:20ch; }
+.mt-dark{ background:var(--mt-deep); color:var(--mt-paper); border-bottom-color:transparent; }
+.mt-dark .mt-eyebrow{ color:var(--mt-teal-lt); }
+.mt-dark .mt-eyebrow::after{ background:var(--mt-rule-lt); }
+.mt-dark p{ color:rgba(255,255,255,.84); }
+
+.mt-cols{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(28px,5vw,84px); align-items:start; }
+.mt-col p{ margin:0 0 18px; max-width:52ch; }
+.mt-col p:last-child{ margin-bottom:0; }
+.mt-note{ color:var(--mt-muted); max-width:56ch; margin:0 0 clamp(26px,3vw,42px); }
+
+/* definition rows: the credential list */
+.mt-dl{ margin:0; }
+.mt-dl > div{ display:grid; grid-template-columns:110px minmax(0,1fr); gap:20px;
+  padding:18px 0; border-top:1px solid var(--mt-rule); align-items:baseline; }
+.mt-dl > div:last-child{ border-bottom:1px solid var(--mt-rule); }
+.mt-dl dt{ font-family:var(--mt-sans); font-size:12px; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--mt-teal); }
+.mt-dl dd{ margin:0; font-family:var(--mt-serif); font-size:clamp(17px,1.5vw,21px); }
+.mt-dl dd span{ display:block; font-family:var(--mt-sans); font-size:13px;
+  color:var(--mt-muted); margin-top:5px; }
+
+/* three strands */
+.mt-three{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(20px,3vw,48px); }
+.mt-three article{ padding-top:22px; border-top:1px solid var(--mt-rule-lt); }
+.mt-three h3{ font-size:clamp(19px,1.8vw,24px); line-height:1.24; margin:0 0 12px; }
+.mt-three p{ font-size:15.5px; line-height:1.68; margin:0; }
+
+/* publications */
+.mt-pubs{ list-style:none; counter-reset:p; margin:0; padding:0; }
+.mt-pubs li{ counter-increment:p; display:grid; grid-template-columns:44px minmax(0,1fr) auto;
+  gap:clamp(14px,2.4vw,34px); padding:22px 0; border-top:1px solid var(--mt-rule);
+  align-items:baseline; }
+.mt-pubs li:last-child{ border-bottom:1px solid var(--mt-rule); }
+.mt-pubs li::before{ content:"0" counter(p); font-size:12px; font-weight:600;
+  letter-spacing:.14em; color:var(--mt-teal); }
+.mt-pubs b{ font-family:var(--mt-serif); font-weight:400; font-size:clamp(17px,1.55vw,22px);
+  line-height:1.34; }
+.mt-pubs span{ font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--mt-muted); white-space:nowrap; }
+
+/* memberships */
+.mt-memb{ list-style:none; margin:0; padding:0; }
+.mt-memb li{ padding:16px 0; border-top:1px solid var(--mt-rule-lt); }
+.mt-memb li:last-child{ border-bottom:1px solid var(--mt-rule-lt); }
+.mt-memb b{ display:block; font-family:var(--mt-serif); font-weight:400; font-size:18px; }
+.mt-memb span{ font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--mt-teal-lt); }
+
+.mt-contact > div{ border-color:var(--mt-rule); }
+
+/* ---------- footer ---------- */
+.mt-foot{ background:var(--mt-paper-2); padding:clamp(40px,5vw,64px) 0; }
+.mt-foot p{ margin:0; font-size:13.5px; line-height:1.8; color:var(--mt-muted); }
+
+a:focus-visible,button:focus-visible{ outline:2px solid var(--mt-teal); outline-offset:3px; }
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .mt-cols{ grid-template-columns:minmax(0,1fr); }
+  .mt-three{ grid-template-columns:minmax(0,1fr); }
+  .mt-links{ display:none; }
+}
+@media (max-width:600px){
+  .mt-dl > div{ grid-template-columns:minmax(0,1fr); gap:6px; }
+  .mt-pubs li{ grid-template-columns:32px minmax(0,1fr); }
+  .mt-pubs span{ grid-column:2; }
+}
+@media (prefers-reduced-motion:reduce){ *{ transition:none !important; animation:none !important; } }
+
+/* ---------- neutralise template rules that assume the demo's own DOM ----------
+   minimal/css/style.css is written for a page whose <header> is an overlay
+   nav bar, so it sets header{position:absolute}. This page uses <header> as
+   the hero, which took it out of flow and let #record draw underneath it.
+   These reassert normal flow for the elements I use differently. */
+header.mt-hero{ position:relative; width:auto; z-index:auto; }
+nav.mt-nav{ position:sticky; }
+footer.mt-foot{ position:relative; }
+section.mt-band{ padding-top:clamp(64px,9vw,128px); }
+
+/* ==========================================================================
+   ELEVATION PASS
+   The difference between a competent personal site and a top-tier one is
+   almost never decoration — it is optical detail. Newsreader is a variable
+   optical-size face, so the display sizes get a genuinely different cut
+   from the text sizes rather than the same drawing scaled up. Years are set
+   in tabular figures so the credential column aligns on the digit. Rules
+   are hairlines that hold at any DPR. Nothing here adds a graphic.
+   ========================================================================== */
+
+/* optical sizing: large text gets the display cut, running text the text cut */
+.mt-hero h1{ font-variation-settings:'opsz' 72; letter-spacing:-.035em; }
+.mt-band h2{ font-variation-settings:'opsz' 48; }
+.mt-lead{ font-variation-settings:'opsz' 28; }
+.mt-dl dd,.mt-pubs b,.mt-memb b{ font-variation-settings:'opsz' 16; }
+
+/* years and figures align on the digit, not the glyph */
+.mt-facts b,.mt-dl dt,.mt-pubs span,.mt-pubs li::before{
+  font-variant-numeric:tabular-nums lining-nums;
+}
+
+/* hairlines that stay hairlines on retina */
+@media (min-resolution:1.5dppx){
+  .mt-dl > div,.mt-pubs li,.mt-memb li,.mt-band,.mt-nav,.mt-facts{ border-width:.5px; }
+}
+
+/* the hero gets a measured optical indent: the display cap sits flush with
+   the eyebrow above it, which needs a small negative offset because the
+   glyph's side bearing is not zero */
+.mt-hero h1{ margin-left:-.045em; }
+
+/* --- the record table, given real hierarchy --- */
+.mt-dl > div{ transition:background .4s var(--mt-ease); }
+@media (hover:hover){
+  .mt-dl > div:hover{ background:rgba(31,95,91,.045); }
+}
+.mt-dl dt{ font-variant-numeric:tabular-nums; }
+
+/* --- publications set as a citation block, not a list --- */
+.mt-pubs li{ transition:background .4s var(--mt-ease); }
+@media (hover:hover){ .mt-pubs li:hover{ background:rgba(31,95,91,.045); } }
+.mt-pubs b{ display:block; max-width:62ch; }
+
+/* --- the three strands: a rule that reads as a measure, not a divider --- */
+.mt-three article{ position:relative; }
+.mt-three article::before{
+  content:""; position:absolute; top:-1px; left:0; width:34px; height:2px;
+  background:var(--mt-teal-lt);
+}
+
+/* --- dark bands get an optical inset so the type does not sit on the edge --- */
+.mt-dark .mt-wrap{ padding-top:clamp(4px,.6vw,10px); }
+
+/* --- restrained arrival: one composition, not six elements --- */
+@media (prefers-reduced-motion:no-preference){
+  /* Direct children of the wrap only. Listing .mt-cols AND the .mt-dl nested
+     inside it meant both faded at once and their opacities multiplied, so the
+     credential table read as murky grey for the length of the transition. */
+  .mt-band .mt-wrap > *{ opacity:0; translate:0 18px; }
+  .mt-band.seen .mt-wrap > *{
+    opacity:1; translate:0 0;
+    transition:opacity .7s ease, translate .7s var(--mt-ease);
+  }
+  .mt-band.seen .mt-wrap > :nth-child(1){ transition-delay:0ms; }
+  .mt-band.seen .mt-wrap > :nth-child(2){ transition-delay:70ms; }
+  .mt-band.seen .mt-wrap > :nth-child(n+3){ transition-delay:150ms; }
+}
+
+/* --- print: these pages get printed by hospital administrators --- */
+@media print{
+  .mt-nav{ display:none; }
+  body{ background:#fff; color:#000; font-size:11pt; }
+  .mt-dark{ background:#fff !important; color:#000 !important; }
+  .mt-dark p,.mt-memb span{ color:#000 !important; }
+  .mt-band{ padding:18pt 0; page-break-inside:avoid; }
+  .mt-hero{ padding:0 0 18pt; }
+  a[href^="http"]::after{ content:" (" attr(href) ")"; font-size:9pt; }
+}
+
+/* ---------- portrait and plate ----------
+   No frame, no drop shadow, no rounded container: the photograph is hung,
+   not boxed. A single hairline gives it an edge against the paper. */
+.mt-hero-grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.62fr);
+  gap:clamp(28px,5vw,80px); align-items:center; }
+.mt-portrait{ margin:0; }
+.mt-portrait img{ display:block; width:100%; height:auto;
+  border:1px solid var(--mt-rule); filter:saturate(.94) contrast(1.02); }
+.mt-shot{ margin:0 0 clamp(30px,4vw,54px); }
+.mt-shot img{ display:block; width:100%; height:auto; max-height:62vh; object-fit:cover;
+  object-position:50% 32%; border:1px solid var(--mt-rule); filter:saturate(.94) contrast(1.02); }
+@media (max-width:900px){
+  .mt-hero-grid{ grid-template-columns:minmax(0,1fr); }
+  /* the portrait leads on a phone, as it would in a printed profile */
+  .mt-portrait{ order:-1; max-width:340px; }
+  .mt-shot img{ max-height:none; }
+}
+
+/* ==========================================================================
+   PREMIUM PASS
+   The first build was a well-set document on white. What it lacked was
+   material: a page that opens on ink and resolves to paper reads as an
+   object rather than a page. Everything below is ground, scale and detail —
+   no ornament is added anywhere.
+   ========================================================================== */
+:root{
+  --mt-ink:#0E1113;
+  --mt-paper:#FAF8F5;         /* warmed: pure white reads as a template */
+  --mt-paper-2:#F2EEE8;
+  --mt-deep:#141A1B;
+  --mt-sand:#C6B79A;          /* 9.60:1 on ink */
+  --mt-sand-deep:#7A6A4E;     /* 4.95:1 on paper */
+  --mt-teal:#16443F;          /* 10.25:1 on paper */
+  --mt-teal-lt:#7FBDB6;       /* 8.89:1 on ink */
+  --mt-muted:#545B60;         /* 6.51:1 on paper */
+  --mt-rule:rgba(14,17,19,.14);
+  --mt-rule-lt:rgba(255,255,255,.15);
+}
+
+/* ---------- the opening: ink, and the portrait lit against it ---------- */
+.mt-onink{
+  background:var(--mt-ink); color:var(--mt-paper);
+  border-bottom:none;
+  padding:clamp(84px,13vw,190px) 0 clamp(70px,10vw,130px);
+}
+.mt-onink .mt-eyebrow{ color:var(--mt-sand); }
+.mt-onink .mt-eyebrow::after{ background:var(--mt-rule-lt); }
+.mt-onink h1{ color:var(--mt-paper); font-size:clamp(50px,9vw,124px); }
+.mt-onink h1 span{ color:var(--mt-sand); }
+.mt-onink .mt-lead{ color:var(--mt-paper); }
+.mt-onink .mt-sub{ color:rgba(255,255,255,.78); }
+.mt-onink .mt-facts{ border-top-color:var(--mt-rule-lt); }
+.mt-onink .mt-facts b{ color:var(--mt-paper); }
+.mt-onink .mt-facts span{ color:var(--mt-sand); }
+.mt-onink .mt-portrait img{
+  border:none;
+  /* a warm rim rather than a box: the print, not its frame */
+  box-shadow:0 0 0 1px rgba(198,183,154,.30), 0 60px 120px -60px #000;
+  filter:saturate(.92) contrast(1.04) brightness(1.02);
+}
+.mt-nav{ background:var(--mt-paper); }
+
+/* ---------- numerals: sequence, stated once ---------- */
+.mt-eyebrow i{
+  font-style:normal; font-family:var(--mt-serif); font-size:15px; letter-spacing:0;
+  color:var(--mt-sand-deep); margin-right:14px; font-variant-numeric:tabular-nums;
+}
+.mt-dark .mt-eyebrow i{ color:var(--mt-sand); }
+
+/* ---------- scale and air ---------- */
+.mt-band{ padding:clamp(78px,11vw,164px) 0; }
+.mt-band h2{ font-size:clamp(31px,4.6vw,64px); line-height:1.02; }
+.mt-lead{ font-size:clamp(21px,2.5vw,32px); }
+.mt-wrap{ width:min(1240px, calc(100% - 2*clamp(20px,5.5vw,80px))); }
+
+/* ---------- dark bands, given real weight ---------- */
+.mt-dark{ background:var(--mt-ink); }
+.mt-dark .mt-eyebrow{ color:var(--mt-teal-lt); }
+.mt-memb span{ color:var(--mt-sand); }
+.mt-three article::before{ background:var(--mt-sand); }
+
+/* ---------- the plate ---------- */
+.mt-shot img{ border:none; box-shadow:0 0 0 1px var(--mt-rule); }
+
+/* ---------- the credential table, as a specimen ---------- */
+.mt-dl dt{ color:var(--mt-sand-deep); }
+.mt-dl > div{ padding:22px 0; }
+@media (hover:hover){ .mt-dl > div:hover{ background:rgba(22,68,63,.05); } }
+.mt-pubs li::before{ color:var(--mt-sand-deep); }
+@media (hover:hover){ .mt-pubs li:hover{ background:rgba(22,68,63,.05); } }
+.mt-links a:hover,.mt-links a:focus-visible{ color:var(--mt-teal); }
+.mt-mark small{ color:var(--mt-sand-deep); }
+
+/* ---------- a hairline that reports position, nothing more ---------- */
+#mt-progress{ position:fixed; top:0; left:0; right:0; height:2px; z-index:60;
+  background:transparent; pointer-events:none; }
+#mt-progress span{ display:block; height:100%; width:0;
+  background:linear-gradient(90deg,var(--mt-teal),var(--mt-sand-deep)); }
+@media (prefers-reduced-motion:reduce){ #mt-progress{ display:none; } }
+
+.mt-foot{ background:var(--mt-paper-2); }
+a:focus-visible{ outline-color:var(--mt-teal); }
+
+/* ---------- the nav resolves with the page ----------
+   A white bar sitting on the ink hero is the one thing that still read as a
+   template. Over the hero it is transparent with light type; past the hero
+   it lands on paper with dark type. The class is added by script, so the
+   default state below is the safe one (paper) if the script never runs. */
+.mt-nav{ transition:background .45s var(--mt-ease), border-color .45s var(--mt-ease); }
+.mt-nav.over-ink{ background:transparent; border-bottom-color:rgba(255,255,255,.13); }
+.mt-nav.over-ink .mt-mark b{ color:var(--mt-paper); }
+.mt-nav.over-ink .mt-mark small{ color:var(--mt-sand); }
+.mt-nav.over-ink .mt-links a{ color:rgba(255,255,255,.80); }
+.mt-nav.over-ink .mt-links a:hover,
+.mt-nav.over-ink .mt-links a:focus-visible{ color:var(--mt-sand); }
+/* the hero starts under the bar so the ink runs to the top edge */
+.mt-onink{ margin-top:-66px; padding-top:clamp(150px,17vw,256px); }
+@media (max-width:900px){ .mt-onink{ margin-top:-58px; padding-top:clamp(120px,26vw,180px); } }
