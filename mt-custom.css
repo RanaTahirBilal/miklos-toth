@@ -348,3 +348,26 @@ a:focus-visible{ outline-color:var(--mt-teal); }
 /* the hero starts under the bar so the ink runs to the top edge */
 .mt-onink{ margin-top:-66px; padding-top:clamp(150px,17vw,256px); }
 @media (max-width:900px){ .mt-onink{ margin-top:-58px; padding-top:clamp(120px,26vw,180px); } }
+
+/* ==========================================================================
+   Image plates added after the client supplied five further photographs.
+   Neutral alt text throughout: no plate names a place or a facility.
+   ========================================================================== */
+
+/* the light-band hairline reads as a dark smear on ink; flip it */
+.mt-dark .mt-shot img{ box-shadow:0 0 0 1px var(--mt-rule-lt); }
+
+/* a plate that closes a section instead of opening it */
+.mt-shot.mt-tail{ margin:clamp(34px,4.4vw,60px) 0 0; }
+
+/* contact: square portrait beside the details */
+.mt-side{
+  display:grid; grid-template-columns:minmax(0,290px) minmax(0,1fr);
+  gap:clamp(28px,5vw,72px); align-items:start;
+}
+.mt-side .mt-shot{ margin:0; }
+.mt-side .mt-shot img{ max-height:none; aspect-ratio:1/1; }
+@media (max-width:760px){
+  .mt-side{ grid-template-columns:minmax(0,1fr); }
+  .mt-side .mt-shot img{ max-width:320px; }
+}
